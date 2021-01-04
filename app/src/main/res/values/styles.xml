@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.NavigationDrawer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.NavigationDrawer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SearchViewTheme" parent="Widget.AppCompat.SearchView.ActionBar">
+        <item name="commitIcon">@drawable/ic_round_search_24</item>
+        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>
+        <item name="android:maxWidth">9999dp</item>
+    </style>
+
+    <style name="AutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:popupElevation">0dp</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="searchViewStyle">@style/SearchViewTheme</item>
+    </style>
+
+    <style name="Widget.App.Appbar" parent="Widget.MaterialComponents.AppBarLayout.PrimarySurface">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/purple_500</item>
+        <item name="colorOnPrimary">@color/purple_700</item>
+    </style>
+
+</resources>
