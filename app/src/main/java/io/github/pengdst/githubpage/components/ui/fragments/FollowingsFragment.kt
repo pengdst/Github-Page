@@ -25,7 +25,6 @@ class FollowingsFragment : BindingFragment<FragmentFollowersBinding>() {
 
     companion object {
 
-        private const val ARGS_USERNAME = "ARGS_USERNAME"
         fun newInstance(usernameArgs: String): FollowingsFragment {
             return FollowingsFragment().apply {
                 username = usernameArgs
