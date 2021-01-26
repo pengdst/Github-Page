@@ -1,26 +1,20 @@
 package io.github.pengdst.githubpage.components.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.githubpage.R
 import io.github.pengdst.githubpage.components.adapters.pagers.UserPagerAdapter
 import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.UserViewModel
-import io.github.pengdst.githubpage.databinding.FragmentHomeBinding
 import io.github.pengdst.githubpage.databinding.FragmentUserDetailBinding
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
-import io.github.pengdst.githubpage.util.extensions.asFormattedDecimals
+import io.github.pengdst.githubpage.utils.binding.FragmentViewBindingDelegate.Companion.viewBindings
+import io.github.pengdst.githubpage.utils.number.asFormattedDecimals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -29,16 +23,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class UserDetailFragment : BindingFragment<FragmentUserDetailBinding>() {
 
+    override val binding: FragmentUserDetailBinding by viewBindings()
+    private val userViewModel: UserViewModel by viewModels()
+
     private val args: UserDetailFragmentArgs by navArgs()
     private val userDetail: UserDetail get() = args.user
 
-    private val userViewModel: UserViewModel by viewModels()
-
     @Inject lateinit var userPagerAdapter: UserPagerAdapter
     @Inject lateinit var glide: RequestManager
-
-    override fun getViewBinding(inflater: LayoutInflater) =
-        FragmentUserDetailBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

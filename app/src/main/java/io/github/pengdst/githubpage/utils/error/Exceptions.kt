@@ -1,4 +1,4 @@
-package io.github.pengdst.githubpage.util
+package io.github.pengdst.githubpage.utils.error
 
 import java.io.IOException
 

@@ -1,7 +1,9 @@
 package io.github.pengdst.githubpage.components.ui.fragments
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,10 +14,11 @@ import io.github.pengdst.githubpage.R
 import io.github.pengdst.githubpage.components.adapters.UserAdapter
 import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.UserViewModel
-import io.github.pengdst.githubpage.datas.domain.models.UserDetail
 import io.github.pengdst.githubpage.databinding.FragmentHomeBinding
-import io.github.pengdst.githubpage.util.extensions.addOnLastPositionScrollListener
-import io.github.pengdst.githubpage.util.extensions.asActionView
+import io.github.pengdst.githubpage.datas.domain.models.UserDetail
+import io.github.pengdst.githubpage.utils.binding.FragmentViewBindingDelegate.Companion.viewBindings
+import io.github.pengdst.githubpage.utils.text.addOnLastPositionScrollListener
+import io.github.pengdst.githubpage.utils.text.asActionView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -25,10 +28,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>() {
 
-    override fun getViewBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
+    override val binding: FragmentHomeBinding by viewBindings()
+    private val userViewModel: UserViewModel by viewModels()
 
     private var isLoading = false
-    private val userViewModel: UserViewModel by viewModels()
 
     @Inject
     lateinit var adapter: UserAdapter

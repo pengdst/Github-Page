@@ -1,7 +1,6 @@
 package io.github.pengdst.githubpage.components.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +10,7 @@ import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.FollowerViewModel
 import io.github.pengdst.githubpage.databinding.FragmentFollowersBinding
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
+import io.github.pengdst.githubpage.utils.binding.FragmentViewBindingDelegate.Companion.viewBindings
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -19,20 +19,18 @@ class FollowersFragment : BindingFragment<FragmentFollowersBinding>() {
 
     var username: String? = null
 
+    override val binding: FragmentFollowersBinding by viewBindings()
     private val followerViewModel: FollowerViewModel by viewModels()
+
     @Inject lateinit var followersAdapter: UserAdapter
 
     companion object {
-
-        private const val ARGS_USERNAME = "ARGS_USERNAME"
         fun newInstance(usernameArgs: String): FollowersFragment {
             return FollowersFragment().apply {
                 username = usernameArgs
             }
         }
     }
-
-    override fun getViewBinding(inflater: LayoutInflater) = FragmentFollowersBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

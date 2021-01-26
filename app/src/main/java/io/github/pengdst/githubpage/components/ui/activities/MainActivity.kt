@@ -1,9 +1,6 @@
 package io.github.pengdst.githubpage.components.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import androidx.core.view.isVisible
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,20 +8,18 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.githubpage.R
+import io.github.pengdst.githubpage.components.ui.base.BaseActivity
 import io.github.pengdst.githubpage.databinding.ActivityMainBinding
-import io.github.pengdst.githubpage.util.extensions.setDrawerLockModeWhen
+import io.github.pengdst.githubpage.utils.binding.ActivityViewBindingDelegate.Companion.viewBindings
+import io.github.pengdst.githubpage.utils.text.setDrawerLockModeWhen
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+
+    private val binding: ActivityMainBinding by viewBindings()
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-    }
 
     override fun onResume() {
         super.onResume()
@@ -47,6 +42,14 @@ class MainActivity : AppCompatActivity() {
                 with(appMain) {
                     toolbar.isVisible = when (destination.id) {
                         R.id.homeFragment, R.id.userDetailFragment -> {
+                            true
+                        }
+                        else -> {
+                            false
+                        }
+                    }
+                    bottomNavigationView.isVisible = when (destination.id) {
+                        R.id.homeFragment -> {
                             true
                         }
                         else -> {

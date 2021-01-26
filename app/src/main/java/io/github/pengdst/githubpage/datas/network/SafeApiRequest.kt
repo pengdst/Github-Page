@@ -1,6 +1,6 @@
 package io.github.pengdst.githubpage.datas.network
 
-import io.github.pengdst.githubpage.util.ApiException
+import io.github.pengdst.githubpage.utils.error.ApiException
 import org.json.JSONException
 import retrofit2.Response
 import java.lang.StringBuilder

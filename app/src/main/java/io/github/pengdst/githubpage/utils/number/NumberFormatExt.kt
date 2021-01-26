@@ -1,6 +1,4 @@
-package io.github.pengdst.githubpage.util.extensions
-
-import io.github.pengdst.githubpage.util.NumberFormatUtil
+package io.github.pengdst.githubpage.utils.number
 
 fun Long.asFormattedDecimals() = NumberFormatUtil.format(this)
 

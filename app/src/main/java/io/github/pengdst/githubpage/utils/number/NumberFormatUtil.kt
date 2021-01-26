@@ -1,4 +1,4 @@
-package io.github.pengdst.githubpage.util
+package io.github.pengdst.githubpage.utils.number
 
 import java.util.*
 

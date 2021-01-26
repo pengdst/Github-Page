@@ -8,9 +8,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BindingFragment<Binding : ViewBinding> : BaseFragment() {
 
-    protected val binding: Binding by lazy { getViewBinding(layoutInflater) }
-
-    abstract fun getViewBinding(inflater: LayoutInflater): Binding
+    protected abstract val binding: Binding
 
     override fun onCreateView(
         inflater: LayoutInflater,

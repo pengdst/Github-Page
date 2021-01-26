@@ -1,4 +1,4 @@
-package io.github.pengdst.githubpage.util.extensions
+package io.github.pengdst.githubpage.utils.text
 
 import android.view.MenuItem
 import android.view.View
