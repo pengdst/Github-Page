@@ -1,0 +1,9 @@
+package io.github.pengdst.githubpage.datas.constants
+
+object ApiConstant {
+
+    const val GITHUB_TOKEN = "ganti dengan token github"
+    const val BASE_URL = "https://api.github.com/"
+    const val BASE_PHOTO_URL = ""
+
+}
