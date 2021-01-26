@@ -1,8 +1,12 @@
 package io.github.pengdst.githubpage.components.adapters.pagers
 
 import androidx.fragment.app.*
+import javax.inject.Inject
 
-class UserStatePagerAdapter(fa: FragmentActivity): FragmentStatePagerAdapter(fa.supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class UserStatePagerAdapter
+@Inject constructor(
+    fa: FragmentActivity,
+) : FragmentStatePagerAdapter(fa.supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val fragmentList = LinkedHashMap<String, Fragment>()
 
