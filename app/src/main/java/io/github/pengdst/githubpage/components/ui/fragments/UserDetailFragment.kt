@@ -13,8 +13,8 @@ import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.UserViewModel
 import io.github.pengdst.githubpage.databinding.FragmentUserDetailBinding
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
-import io.github.pengdst.githubpage.utils.binding.FragmentViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.githubpage.utils.number.asFormattedDecimals
+import io.github.pengdst.libs.ui.viewbinding.activity.ActivityViewBindingDelegate.Extension.viewBindings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber

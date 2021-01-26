@@ -10,8 +10,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.githubpage.R
 import io.github.pengdst.githubpage.components.ui.base.BaseActivity
 import io.github.pengdst.githubpage.databinding.ActivityMainBinding
-import io.github.pengdst.githubpage.utils.binding.ActivityViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.githubpage.utils.text.setDrawerLockModeWhen
+import io.github.pengdst.libs.ui.extensions.viewBindings
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {

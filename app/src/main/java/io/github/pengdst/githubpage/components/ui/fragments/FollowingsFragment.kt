@@ -10,7 +10,7 @@ import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.FollowingViewModel
 import io.github.pengdst.githubpage.databinding.FragmentFollowersBinding
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
-import io.github.pengdst.githubpage.utils.binding.FragmentViewBindingDelegate.Companion.viewBindings
+import io.github.pengdst.libs.ui.viewbinding.activity.ActivityViewBindingDelegate.Extension.viewBindings
 import javax.inject.Inject
 
 @AndroidEntryPoint

@@ -16,9 +16,9 @@ import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.UserViewModel
 import io.github.pengdst.githubpage.databinding.FragmentHomeBinding
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
-import io.github.pengdst.githubpage.utils.binding.FragmentViewBindingDelegate.Companion.viewBindings
 import io.github.pengdst.githubpage.utils.text.addOnLastPositionScrollListener
 import io.github.pengdst.githubpage.utils.text.asActionView
+import io.github.pengdst.libs.ui.viewbinding.activity.ActivityViewBindingDelegate.Extension.viewBindings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import io.github.pengdst.githubpage.R
 import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.databinding.FragmentSplashBinding
-import io.github.pengdst.githubpage.utils.binding.FragmentViewBindingDelegate.Companion.viewBindings
+import io.github.pengdst.libs.ui.viewbinding.activity.ActivityViewBindingDelegate.Extension.viewBindings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
