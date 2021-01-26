@@ -16,7 +16,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class FollowingsFragment : BindingFragment<FragmentFollowersBinding>() {
 
-    var username: String? = null
+    private var username: String? = null
 
     override val binding: FragmentFollowersBinding by viewBindings()
     private val followingViewModel: FollowingViewModel by viewModels()
