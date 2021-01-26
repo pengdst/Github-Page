@@ -1,6 +1,6 @@
-package io.github.pengdst.githubpage.datas.domain.utils
+package io.github.pengdst.githubpage.datas.utils.mapper
 
-interface DomainMapper<T, DomainModel> {
+interface Mapper<T, DomainModel> {
 
     fun toDomainModel(entity: T): DomainModel
     fun fromDomainModel(domainModel: DomainModel): T
