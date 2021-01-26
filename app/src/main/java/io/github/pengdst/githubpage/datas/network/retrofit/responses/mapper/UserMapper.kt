@@ -1,12 +1,11 @@
 package io.github.pengdst.githubpage.datas.network.retrofit.responses.mapper
 
 import io.github.pengdst.githubpage.datas.domain.models.User
-import io.github.pengdst.githubpage.datas.domain.utils.DomainListMapper
-import io.github.pengdst.githubpage.datas.domain.utils.DomainMapper
+import io.github.pengdst.githubpage.datas.utils.mapper.ListMapper
+import io.github.pengdst.githubpage.datas.utils.mapper.Mapper
 import io.github.pengdst.githubpage.datas.network.retrofit.responses.models.UserDto
 
-object UserDomainMapper : DomainMapper<UserDto, User>,
-    DomainListMapper<UserDto, User> {
+object UserMapper : Mapper<UserDto, User> {
 
     override fun toDomainModel(entity: UserDto) = User(
         name = entity.name,
@@ -29,12 +28,4 @@ object UserDomainMapper : DomainMapper<UserDto, User>,
         following = domainModel.following,
         repository = domainModel.repository
     )
-
-    override fun toDomainList(entity: List<UserDto>) = entity.map {
-        toDomainModel(it)
-    }
-
-    override fun fromDomainList(domainList: List<User>) = domainList.map {
-        fromDomainModel(it)
-    }
 }
