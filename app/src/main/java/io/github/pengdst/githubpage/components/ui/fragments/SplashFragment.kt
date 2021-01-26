@@ -30,7 +30,6 @@ class SplashFragment : BindingFragment<FragmentSplashBinding>() {
                     binding.textView.text =
                         TimeUnit.MILLISECONDS.toMillis(SystemClock.currentThreadTimeMillis())
                             .toString()
-                    Timber.e("onViewCreated() called ${TimeUnit.MILLISECONDS.toMillis(SystemClock.currentThreadTimeMillis())}")
                 }
             }
         }
