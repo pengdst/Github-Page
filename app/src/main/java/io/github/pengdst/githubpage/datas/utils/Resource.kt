@@ -17,7 +17,7 @@ sealed class Resource<T> {
 
     companion object {
         fun <T> success(data: T) = Success(data = data)
-        fun <T> error(errorMessage: String, data: T?) = Error(errorMessage, data)
-        fun <T> loading(data: T?) = Loading(data)
+        fun <T> error(errorMessage: String, data: T? = null) = Error(errorMessage, data)
+        fun <T> loading(data: T? = null) = Loading(data)
     }
 }
