@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.scopes.FragmentScoped
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
 import io.github.pengdst.githubpage.R
 import io.github.pengdst.githubpage.databinding.ItemUserGithubBinding
@@ -34,7 +31,7 @@ class UserAdapter @Inject constructor() : BaseAdapter<UserAdapter.ViewHolder, Us
             textviewUsername.text = userModel.username
 
             glide
-                .load(userModel.avatarUrl)
+                .load(userModel.url.avatarUrl)
                 .into(holder.binding.imagePhoto)
         }
 
