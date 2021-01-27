@@ -16,6 +16,7 @@ import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.UserViewModel
 import io.github.pengdst.githubpage.databinding.FragmentHomeBinding
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
+import io.github.pengdst.githubpage.datas.utils.Resource
 import io.github.pengdst.githubpage.utils.text.addOnLastPositionScrollListener
 import io.github.pengdst.githubpage.utils.text.asActionView
 import io.github.pengdst.libs.ui.viewbinding.activity.ActivityViewBindingDelegate.Extension.viewBindings
@@ -73,8 +74,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>() {
 
             try {
                 isLoading = false
-                val users = userViewModel.getUsers()
-                users?.toList()?.let { updateUI(it) }
+                userViewModel.getUsers().observe(viewLifecycleOwner) {
+                    when(it){
+                        is Resource.Success -> {
+                            updateUI(it.data)
+                        }
+                        is Resource.Loading -> isLoading = true
+                        is Resource.Error -> longToast(it.errorMessage)
+                    }
+                }
 
             } catch (e: Exception) {
                 Timber.e("Error $e")
@@ -88,11 +96,11 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>() {
         lifecycleScope.launchWhenCreated {
 
             try {
-                val response = userViewModel.searchUser(username)
-
-                response?.let {
-                    it.item?.let { userList ->
-                        updateUI(userList)
+                userViewModel.searchUser(username).observe(viewLifecycleOwner){
+                    when(it) {
+                        is Resource.Success -> updateUI(it.data)
+                        is Resource.Loading -> isLoading = true
+                        is Resource.Error -> longToast(it.errorMessage)
                     }
                 }
 
