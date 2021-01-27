@@ -10,15 +10,9 @@ class UserViewModel @ViewModelInject constructor(
     private val repository: UserRepository
 ) : ViewModel() {
 
-    suspend fun getUserDetail(username: String) = withContext(Dispatchers.IO) {
-        repository.getUserDetail(username)
-    }
+    suspend fun getUserDetail(username: String) = repository.getUserDetail(username)
 
-    suspend fun getUsers() = withContext(Dispatchers.IO) {
-        repository.getUsers()
-    }
+    suspend fun getUsers() = repository.getUsers()
 
-    suspend fun searchUser(username: String) = withContext(Dispatchers.IO) {
-        repository.searchUser(username)
-    }
+    suspend fun searchUser(username: String) = repository.searchUser(username)
 }
