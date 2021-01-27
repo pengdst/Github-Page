@@ -9,10 +9,12 @@ import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.pengdst.githubpage.R
 import io.github.pengdst.githubpage.components.adapters.pagers.UserPagerAdapter
+import io.github.pengdst.githubpage.components.adapters.pagers.UserStatePagerAdapter
 import io.github.pengdst.githubpage.components.ui.base.BindingFragment
 import io.github.pengdst.githubpage.components.viewmodels.UserViewModel
 import io.github.pengdst.githubpage.databinding.FragmentUserDetailBinding
 import io.github.pengdst.githubpage.datas.domain.models.UserDetail
+import io.github.pengdst.githubpage.datas.utils.Resource
 import io.github.pengdst.githubpage.utils.number.asFormattedDecimals
 import io.github.pengdst.libs.ui.viewbinding.activity.ActivityViewBindingDelegate.Extension.viewBindings
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +31,7 @@ class UserDetailFragment : BindingFragment<FragmentUserDetailBinding>() {
     private val args: UserDetailFragmentArgs by navArgs()
     private val userDetail: UserDetail get() = args.user
 
-    @Inject lateinit var userPagerAdapter: UserPagerAdapter
+    @Inject lateinit var userPagerAdapter: UserStatePagerAdapter
     @Inject lateinit var glide: RequestManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,13 +48,13 @@ class UserDetailFragment : BindingFragment<FragmentUserDetailBinding>() {
             addFragment(
                 Pair(
                     getString(R.string.text_followers),
-                    FollowersFragment.newInstance(userDetail.username.toString())
+                    FollowersFragment.newInstance(userDetail.username)
                 )
             )
             addFragment(
                 Pair(
                     getString(R.string.text_followings),
-                    FollowingsFragment.newInstance(userDetail.username.toString())
+                    FollowingsFragment.newInstance(userDetail.username)
                 )
             )
         }
@@ -65,14 +67,18 @@ class UserDetailFragment : BindingFragment<FragmentUserDetailBinding>() {
         lifecycleScope.launchWhenCreated {
 
             try {
-                val users = userViewModel.getUserDetail(userDetail.username.toString())
-
                 withContext(Dispatchers.Main) {
-                    users.body()?.let { updateUi(it) }
+                    userViewModel.getUserDetail(userDetail.username).observe(viewLifecycleOwner){
+                        when(it){
+                            is Resource.Success -> updateUi(it.data)
+                            is Resource.Loading -> Unit
+                            is Resource.Error -> longToast(it.errorMessage)
+                        }
+                    }
                 }
 
             } catch (e: Exception) {
-                Timber.e("Error ${e.stackTraceToString()}")
+                Timber.e("error ${e.stackTraceToString()}")
             }
 
         }
@@ -84,11 +90,11 @@ class UserDetailFragment : BindingFragment<FragmentUserDetailBinding>() {
             textViewFullname.text = userDetail.name
             textViewUsername.text = userDetail.username
 
-            textViewFollowers.text = userDetail.followers?.asFormattedDecimals()
-            textViewFollowings.text = userDetail.following?.asFormattedDecimals()
-            textViewRepositories.text = userDetail.publicRepos?.asFormattedDecimals()
+            textViewFollowers.text = userDetail.followers.followers.asFormattedDecimals()
+            textViewFollowings.text = userDetail.following.following.asFormattedDecimals()
+            textViewRepositories.text = userDetail.repos.publicRepos.asFormattedDecimals()
 
-            glide.load(userDetail.avatarUrl)
+            glide.load(userDetail.url.avatarUrl)
                 .into(imageProfile)
         }
     }
