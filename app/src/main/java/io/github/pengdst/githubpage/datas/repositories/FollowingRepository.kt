@@ -1,7 +1,7 @@
 package io.github.pengdst.githubpage.datas.repositories
 
-import io.github.pengdst.githubpage.datas.domain.utils.toDomain
-import io.github.pengdst.githubpage.datas.domain.utils.toDomainList
+import io.github.pengdst.githubpage.datas.utils.mapper.toDomain
+import io.github.pengdst.githubpage.datas.utils.mapper.toDomainList
 import io.github.pengdst.githubpage.datas.network.retrofit.routes.UserRoute
 import retrofit2.Response
 import javax.inject.Inject
